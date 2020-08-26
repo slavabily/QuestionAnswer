@@ -33,31 +33,34 @@ struct ContentView: View {
                 .padding()
             
             HStack {
-                Button("\(answer1) ") {
-                    isCorrect(question: question, answer: answer1)
+                if isCorrect == nil {
+                    Button("\(answer1) ") {
+                        isCorrect(question: question, answer: answer1)
+                    }
+                    .font(.title2)
+                    .padding()
+                    
+                    Spacer()
+                    
+                    Button("\(answer2)") {
+                         isCorrect(question: question, answer: answer2)
+                    }
+                    .font(.title2)
+                    .padding()
                 }
-                .font(.title2)
-                .padding()
-                
-                Spacer()
-                
-                Button("\(answer2)") {
-                     isCorrect(question: question, answer: answer2)
-                }
-                .font(.title2)
-                .padding()
             }
             
             if isCorrect != nil {
                 if isCorrect == true {
-                    Text("Correct!")
+                    Text("Correct!\n\(dict[question]!)"
+                    )
                         .font(.headline)
                         .padding()
                         .background(Color.green)
                         .clipShape(Capsule())
                         .padding(40)
                 } else {
-                    Text("Incorrect!")
+                    Text("Incorrect!\n\(dict[question]!)")
                         .font(.headline)
                         .padding()
                         .background(Color.red)
