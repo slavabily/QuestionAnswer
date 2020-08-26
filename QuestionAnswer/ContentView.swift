@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var question = ""
     @State private var answer1 = ""
     @State private var answer2 = ""
+    @State private var isCorrect: Bool? = nil
     
     let words = ["I", "You", "He", "She","We", "They"]
     let translations = ["Yo", "Tu", "El", "Ella", "Nosotros", "Ellos"]
@@ -35,7 +36,7 @@ struct ContentView: View {
                 Button("\(answer1) ") {
                     isCorrect(question: question, answer: answer1)
                 }
-                .font(.headline)
+                .font(.title2)
                 .padding()
                 
                 Spacer()
@@ -43,15 +44,38 @@ struct ContentView: View {
                 Button("\(answer2)") {
                      isCorrect(question: question, answer: answer2)
                 }
-                .font(.headline)
+                .font(.title2)
                 .padding()
             }
             
-            Button("Continue") {
-                nextWord()
-                translation(question: question)
+            if isCorrect != nil {
+                if isCorrect == true {
+                    Text("Correct!")
+                        .font(.headline)
+                        .padding()
+                        .background(Color.green)
+                        .clipShape(Capsule())
+                        .padding(40)
+                } else {
+                    Text("Incorrect!")
+                        .font(.headline)
+                        .padding()
+                        .background(Color.red)
+                        .clipShape(Capsule())
+                        .padding(40)
+                }
+            } else {
+                Spacer().frame(minHeight: 80, maxHeight: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
-            .font(.title)
+            
+            if isCorrect != nil {
+                Button("Continue") {
+                    nextWord()
+                    translation(question: question)
+                    isCorrect = nil
+                }
+                .font(.title)
+            }
             
         }
         .onAppear {
@@ -88,14 +112,12 @@ struct ContentView: View {
         }
     }
     
-    func isCorrect(question: String, answer: String) -> Bool {
+    func isCorrect(question: String, answer: String) {
         
         if dict[question] == answer {
-            print("Correct!")
-            return true
+            isCorrect = true
         } else {
-            print("Incorrect!\n The correct answer is: \(dict[question]!)")
-            return false
+            isCorrect = false
         }
     }
 }
