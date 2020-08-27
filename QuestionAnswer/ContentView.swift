@@ -13,6 +13,15 @@ struct ContentView: View {
     @State private var answer1 = ""
     @State private var answer2 = ""
     @State private var isCorrect: Bool? = nil
+    @State private var score = 0
+    
+    var heart: Bool {
+        if score >= 5 {
+            return true
+        } else {
+            return false
+        }
+    }
     
     let words = ["I", "You", "He", "She","We", "They"]
     let translations = ["Yo", "Tu", "El", "Ella", "Nosotros", "Ellos"]
@@ -52,7 +61,7 @@ struct ContentView: View {
             
             if isCorrect != nil {
                 if isCorrect == true {
-                    Text("Correct!\n\(dict[question]!)"
+                    Text("Correct!:)"
                     )
                         .font(.headline)
                         .padding()
@@ -60,7 +69,7 @@ struct ContentView: View {
                         .clipShape(Capsule())
                         .padding(40)
                 } else {
-                    Text("Incorrect!\n\(dict[question]!)")
+                    Text("Incorrect!:(\n Correct answer: \(dict[question]!)")
                         .font(.headline)
                         .padding()
                         .background(Color.red)
@@ -79,7 +88,16 @@ struct ContentView: View {
                 }
                 .font(.title)
             }
+            Spacer()
             
+            if heart {
+                Image(systemName: "heart.fill")
+                    .foregroundColor(.red)
+            }
+             
+            Text("Score: \(score)")
+                .font(.headline)
+                .padding()
         }
         .onAppear {
             nextWord()
@@ -119,6 +137,7 @@ struct ContentView: View {
         
         if dict[question] == answer {
             isCorrect = true
+            score += 1
         } else {
             isCorrect = false
         }
