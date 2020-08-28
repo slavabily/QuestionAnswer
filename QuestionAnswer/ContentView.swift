@@ -15,14 +15,6 @@ struct ContentView: View {
     @State private var isCorrect: Bool? = nil
     @State private var score = 0
     
-    var heart: Bool {
-        if score >= 5 {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     let words = ["I", "You", "He", "She","We", "They"]
     let translations = ["Yo", "Tu", "El", "Ella", "Nosotros", "Ellos"]
     
@@ -90,9 +82,17 @@ struct ContentView: View {
             }
             Spacer()
             
-            if heart {
-                Image(systemName: "heart.fill")
-                    .foregroundColor(.red)
+            switch score {
+            case 0..<5:
+                Hearts(quantity: 0)
+            case 5..<10:
+                Hearts(quantity: 1)
+            case 10..<15:
+                Hearts(quantity: 2)
+            case 15..<20:
+                Hearts(quantity: 3)
+            default:
+                Hearts(quantity: 0)
             }
              
             Text("Score: \(score)")

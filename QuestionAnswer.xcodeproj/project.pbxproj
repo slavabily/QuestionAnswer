@@ -13,6 +13,7 @@
 		B9D0B6B124EFA27200EDAD5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9D0B6B024EFA27200EDAD5F /* Assets.xcassets */; };
 		B9D0B6B424EFA27200EDAD5F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9D0B6B324EFA27200EDAD5F /* Preview Assets.xcassets */; };
 		B9D0B6B724EFA27200EDAD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9D0B6B524EFA27200EDAD5F /* LaunchScreen.storyboard */; };
+		B9DA7F6024F7CD0D00032617 /* Hearts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DA7F5F24F7CD0D00032617 /* Hearts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B9D0B6B324EFA27200EDAD5F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B9D0B6B624EFA27200EDAD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9D0B6B824EFA27200EDAD5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9DA7F5F24F7CD0D00032617 /* Hearts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hearts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				B9D0B6AA24EFA26D00EDAD5F /* AppDelegate.swift */,
 				B9D0B6AC24EFA26D00EDAD5F /* SceneDelegate.swift */,
 				B9D0B6AE24EFA26D00EDAD5F /* ContentView.swift */,
+				B9DA7F5F24F7CD0D00032617 /* Hearts.swift */,
 				B9D0B6B024EFA27200EDAD5F /* Assets.xcassets */,
 				B9D0B6B524EFA27200EDAD5F /* LaunchScreen.storyboard */,
 				B9D0B6B824EFA27200EDAD5F /* Info.plist */,
@@ -147,6 +150,7 @@
 			files = (
 				B9D0B6AB24EFA26D00EDAD5F /* AppDelegate.swift in Sources */,
 				B9D0B6AD24EFA26D00EDAD5F /* SceneDelegate.swift in Sources */,
+				B9DA7F6024F7CD0D00032617 /* Hearts.swift in Sources */,
 				B9D0B6AF24EFA26D00EDAD5F /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
