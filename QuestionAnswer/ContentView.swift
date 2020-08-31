@@ -144,9 +144,20 @@ struct ContentView: View {
             score += 1
         } else {
             isCorrect = false
-            if score > 0 {
+            
+            switch score {
+            case 0..<5:
                 score -= 1
+            case 6..<10:
+                score -= 1
+            case 11..<15:
+                score -= 1
+            case 16..<100:
+                score -= 1
+            default:
+                break
             }
+            
         }
     }
 }
