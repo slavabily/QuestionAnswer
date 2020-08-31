@@ -106,6 +106,13 @@ struct ContentView: View {
             }
             .navigationBarTitle("Engish-Spanish Quiz")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading: Button(action: {
+                nextWord()
+                translation(question: question)
+                score = 0
+            }, label: {
+                Image(systemName: "hare.fill")
+            }))
         }
     }
     
