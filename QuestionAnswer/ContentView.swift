@@ -28,80 +28,84 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        VStack {
-            Text("Please, select correct translation:\n \(question)")
-                .font(.title)
-                .padding()
-            
-            HStack {
-                if isCorrect == nil {
-                    Button("\(answer1) ") {
-                        isCorrect(question: question, answer: answer1)
-                    }
-                    .font(.title2)
+        NavigationView {
+            VStack {
+                Text("Please, select correct translation:\n \(question)")
+                    .font(.title)
                     .padding()
-                    
-                    Spacer()
-                    
-                    Button("\(answer2)") {
-                         isCorrect(question: question, answer: answer2)
-                    }
-                    .font(.title2)
-                    .padding()
-                }
-            }
-            
-            if isCorrect != nil {
-                if isCorrect == true {
-                    Text("Correct!:)"
-                    )
-                        .font(.headline)
+                
+                HStack {
+                    if isCorrect == nil {
+                        Button("\(answer1) ") {
+                            isCorrect(question: question, answer: answer1)
+                        }
+                        .font(.title2)
                         .padding()
-                        .background(Color.green)
-                        .clipShape(Capsule())
-                        .padding(40)
+                        
+                        Spacer()
+                        
+                        Button("\(answer2)") {
+                             isCorrect(question: question, answer: answer2)
+                        }
+                        .font(.title2)
+                        .padding()
+                    }
+                }
+                
+                if isCorrect != nil {
+                    if isCorrect == true {
+                        Text("Correct!:)"
+                        )
+                            .font(.headline)
+                            .padding()
+                            .background(Color.green)
+                            .clipShape(Capsule())
+                            .padding(40)
+                    } else {
+                        Text("Incorrect!:(\n Correct answer: \(dict[question]!)")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.red)
+                            .clipShape(Capsule())
+                            .padding(40)
+                    }
                 } else {
-                    Text("Incorrect!:(\n Correct answer: \(dict[question]!)")
-                        .font(.headline)
-                        .padding()
-                        .background(Color.red)
-                        .clipShape(Capsule())
-                        .padding(40)
+                    Spacer().frame(minHeight: 80, maxHeight: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-            } else {
-                Spacer().frame(minHeight: 80, maxHeight: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            }
-            
-            if isCorrect != nil {
-                Button("Continue") {
-                    nextWord()
-                    translation(question: question)
-                    isCorrect = nil
+                
+                if isCorrect != nil {
+                    Button("Continue") {
+                        nextWord()
+                        translation(question: question)
+                        isCorrect = nil
+                    }
+                    .font(.title)
                 }
-                .font(.title)
+                Spacer()
+                
+                switch score {
+                case 0..<5:
+                    Hearts(quantity: 0)
+                case 5..<10:
+                    Hearts(quantity: 1)
+                case 10..<15:
+                    Hearts(quantity: 2)
+                case 15..<20:
+                    Hearts(quantity: 3)
+                default:
+                    Hearts(quantity: 0)
+                }
+                 
+                Text("Score: \(score)")
+                    .font(.headline)
+                    .padding()
             }
-            Spacer()
-            
-            switch score {
-            case 0..<5:
-                Hearts(quantity: 0)
-            case 5..<10:
-                Hearts(quantity: 1)
-            case 10..<15:
-                Hearts(quantity: 2)
-            case 15..<20:
-                Hearts(quantity: 3)
-            default:
-                Hearts(quantity: 0)
+            .onAppear {
+                nextWord()
+                translation(question: question)
             }
-             
-            Text("Score: \(score)")
-                .font(.headline)
-                .padding()
-        }
-        .onAppear {
-            nextWord()
-            translation(question: question)
+            .navigationBarTitle("Engish-Spanish Quiz")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
     
@@ -140,6 +144,9 @@ struct ContentView: View {
             score += 1
         } else {
             isCorrect = false
+            if score > 0 {
+                score -= 1
+            }
         }
     }
 }
