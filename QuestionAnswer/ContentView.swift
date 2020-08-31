@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var answer1 = ""
     @State private var answer2 = ""
     @State private var isCorrect: Bool? = nil
-    @State private var score = 0
+    @State private var score = UserDefaults.standard.integer(forKey: "Score")
     
     let words = ["I", "You", "He", "She","We", "They"]
     let translations = ["Yo", "Tu", "El", "Ella", "Nosotros", "Ellos"]
@@ -100,6 +100,9 @@ struct ContentView: View {
                     .font(.headline)
                     .padding()
             }
+            .onDisappear {
+                save()
+            }
             .onAppear {
                 nextWord()
                 translation(question: question)
@@ -114,6 +117,10 @@ struct ContentView: View {
                 Image(systemName: "hare.fill")
             }))
         }
+    }
+    
+    func save() {
+        UserDefaults.standard.setValue(score, forKey: "Score")
     }
     
     func nextWord() {
