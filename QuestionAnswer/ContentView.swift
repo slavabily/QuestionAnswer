@@ -30,8 +30,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Please, select correct translation:\n \(question)")
+                Text("Please, select correct translation:\n")
                     .font(.title)
+                    .padding()
+                Text(question)
+                    .font(.largeTitle)
                     .padding()
                 
                 HStack {
